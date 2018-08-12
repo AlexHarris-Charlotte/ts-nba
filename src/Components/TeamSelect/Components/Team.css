@@ -1,0 +1,13 @@
+.team {
+    border-bottom: 1px solid black;
+    width: 20%;
+    padding: 10px;
+    flex-grow: 1;
+    margin: 10px;
+}
+
+.team:hover {
+    background-color: rgb(255, 236, 185);
+    cursor: pointer;
+}
+
