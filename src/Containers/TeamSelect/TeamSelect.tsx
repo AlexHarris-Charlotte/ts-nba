@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './TeamSelect.css'
 
 import { Team } from './Components/Team'; 
@@ -32,6 +33,7 @@ class TeamSelect extends Component<IProps> {
             return (
                 <Team 
                     teamName={team.teamName}
+                    match={team.teamName}
                     abbv={team.abbreviation}
                     key={team.teamId}
                     num={index}
@@ -40,9 +42,13 @@ class TeamSelect extends Component<IProps> {
         })
 
         return (
-            <div className='container'>
-                {teamList}
-            </div>
+            // <Router>
+                <div className='container'>
+                    {teamList}
+
+                    {/* <Route path="/:teamName" component={Team} /> */}
+                </div>
+            ///* </Router> */
         );
     }
 }

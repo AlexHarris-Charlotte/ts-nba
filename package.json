@@ -5,16 +5,20 @@
   "dependencies": {
     "@material-ui/core": "^1.4.3",
     "@material-ui/icons": "^2.0.1",
+    "@types/react-router-dom": "^4.3.0",
     "nba": "^4.2.2",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
     "react-scripts-ts": "2.16.0",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
+    "build-css": "less-watch-compiler --run-once --main-file=index.less src/less/ src/less/",
+    "watch-css": "npm run build-css && less-watch-compiler --main-file=index.less src/less/ src/less/",
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
@@ -27,6 +31,7 @@
     "@types/react-dom": "^16.0.6",
     "@types/react-redux": "^6.0.6",
     "less": "^3.8.1",
+    "less-watch-compiler": "^1.11.3",
     "typescript": "^3.0.1"
   }
 }
