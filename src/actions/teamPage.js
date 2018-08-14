@@ -2,13 +2,10 @@
 const nba = require('nba');
 
 module.exports = {
-  getTeamData
+    getTeamData
 }
 
-function getTeamData(team, currentYear) {
-
-    console.log(nba);
-    console.log(team, currentYear);
+function teamPromise(team, currentYear) {
     const TeamID = nba.teamIdFromName(team);
 
     const stats = nba.stats.teamInfoCommon({
@@ -17,8 +14,18 @@ function getTeamData(team, currentYear) {
         SeasonType: 'Regular Season',
         TeamID,
     });
-    return stats.then(data => {
-        type: 'GET_TEAM',
-        payload: data
-    });
+    return stats;
 }
+
+function getTeamData(team, currentYear) {
+    return function (dispatch, getState) {
+        dispatch({
+            type: 'GET_TEAM',
+            payload: ''
+        })
+        return teamPromise(team, currentYear).then(data => {
+            dispatch({type: 'GET_TEAM', payload: data})
+        });
+    }
+}
+
