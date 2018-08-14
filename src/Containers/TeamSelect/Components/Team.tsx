@@ -12,8 +12,11 @@ interface IProps {
 }
 
 export const Team = (props: IProps) => {
+
+    const formattedTeamName = props.teamName.split(' ').join('');
+
     return (
-        <Link to='/team' className='team' style={{ textDecoration: 'none', color: 'black' }}>
+        <Link to={'/team/'+formattedTeamName} className='team' style={{ textDecoration: 'none', color: 'black' }}>
             {props.teamName}
         </Link>
     );
