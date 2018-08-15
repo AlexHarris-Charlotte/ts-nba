@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './TeamHeader.css';
+import YearDropDown from '../../../Components/YearDropDown/YearDropDown';
 
 
 interface IProps {
@@ -20,6 +21,7 @@ interface IProps {
         teamName         : string,
         w                : number
     };
+    teamSeasons: {}
 }
 
 const TeamHeader = (props: IProps) => {
@@ -36,7 +38,7 @@ const TeamHeader = (props: IProps) => {
             <h3 className="teamProps">{`${teamCity} ${teamName}`}</h3>
             <h3 className="teamProps">{teamDivision}</h3>
             <h3 className="teamProps">{`Wins: ${w} - Losses: ${l}`}</h3>
-            <p>Dropdown for year changes here</p>
+            <YearDropDown className="teamProps" />
         </div>
     );
 };

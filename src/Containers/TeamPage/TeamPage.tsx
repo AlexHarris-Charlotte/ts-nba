@@ -37,14 +37,16 @@ export class TeamPage extends React.Component<IProps> {
   }
 
   render() {
-    console.log(this.props.teamData);
     if (!this.props.teamData) {
       return <div>Make Loader here</div>
     }
-
+    console.log(this.props.teamData);
     return (
       <div>
-          <TeamHeader teamInfo={this.props.teamData.teamInfoCommon[0]} />
+          <TeamHeader 
+            teamInfo={this.props.teamData.teamInfoCommon[0]} 
+            teamSeasons={this.props.teamData.availableSeasons}  
+          />
       </div>
     )
   }

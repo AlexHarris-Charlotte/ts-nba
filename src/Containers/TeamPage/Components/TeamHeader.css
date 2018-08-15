@@ -3,21 +3,10 @@
     width: 90%;
     margin: 0 auto;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .teamProps {
     flex-grow: 1;
     margin: 20px;
-}
-
-.team {
-    font-size: 15px;
-    border-bottom: 1px solid black;
-    width: 20%;
-    height: 30px;
-    padding: 10px;
-    flex-grow: 1;
-    margin: 10px;
-    transition: width 1s, height 1s, background-color .5s, font-size .5s;
 }
