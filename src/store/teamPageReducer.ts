@@ -2,21 +2,21 @@ import * as teamsFetch from '../actions/teamPage';
 const GET_TEAM = 'GET_TEAM';
 
 interface IInitalState {
-    teams: string[]
+    teamData: any
 }
 
 const initalState: IInitalState = {
-    teams: []
+    teamData: null
 }
 
 export default function(state = initalState, action: any) {
     switch(action.type) {
         case(GET_TEAM):
-            console.log('helllooooo');
-            const teamsFetch: string[] = action.payload 
+            const teamData: any = action.payload 
+            console.log('teamData reducer: ', teamData);
             return {
                 ...state,
-                teams: state.teams.concat(teamsFetch)
+                teamData: {...teamData}
             }
         default:
             return state;

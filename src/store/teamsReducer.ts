@@ -1,4 +1,3 @@
-import * as teamsFetch from '../actions/teamSelect';
 const GET_TEAMS = 'GET_TEAMS';
 
 interface IInitalState {

@@ -19,10 +19,6 @@ function teamPromise(team, currentYear) {
 
 function getTeamData(team, currentYear) {
     return function (dispatch, getState) {
-        dispatch({
-            type: 'GET_TEAM',
-            payload: ''
-        })
         return teamPromise(team, currentYear).then(data => {
             dispatch({type: 'GET_TEAM', payload: data})
         });

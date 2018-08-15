@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux';
+import TeamHeader from './Components/TeamHeader';
 
 // Need to import actions
 const teamPageActions = require('../../actions/teamPage');
@@ -8,41 +9,49 @@ const teamPageActions = require('../../actions/teamPage');
 interface IProps {
     match: any;
     onLoad: Function;
+    teamData: {
+      availableSeasons: any[],
+      teamInfoCommon: any[],
+      teamSeasonRanks: any[],
+    }
 }
 
 export class TeamPage extends React.Component<IProps> {
+  constructor(props: any) {
+    super(props);
+  }
+
+  state = {
+    teamInfo    : null,
+    seasonRank  : null,
+  }
 
   componentDidMount() {
     let param: string = this.props.match.params.teamName
-      .replace(/([A-Z])/g, ' $1').trim()
+                        .replace(/([A-Z])/g, ' $1').trim()
     const currentDate: Date = new Date();
     let currentSeason: number | string = (currentDate.getFullYear() - 1).toString();
     currentSeason = String(currentSeason + '-' + (Number(currentSeason.slice(2)) + 1));
-    console.log(currentSeason);
-    // need to invoke an action to hit reducer. Pass year and teamName as payload
-    // This will be passed to api endpoint that will return data for team for current year
+
     this.props.onLoad(param, currentSeason);
   }
 
   render() {
+    console.log(this.props.teamData);
+    if (!this.props.teamData) {
+      return <div>Make Loader here</div>
+    }
+
     return (
       <div>
-          <p>{this.props.match.params.teamName}</p>
+          <TeamHeader teamInfo={this.props.teamData.teamInfoCommon[0]} />
       </div>
     )
   }
 }
 
-// const mapStateToProps = (state: any) => ({
-  
-// })
-
-// const mapDispatchToProps = {
-  
-// }
-
 const mapStateToProps = (state: any) => {
-  return { teamsList: state.teamsReducer.teams }
+  return { teamData: state.teamPageReducer.teamData }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
