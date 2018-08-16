@@ -1,13 +1,47 @@
+ul {
+    display: block;
+    padding: 0px;
+}
+
+.yearContainer:first-child {
+    margin-top: 0px;
+}
+
+.yearContainer:last-child {
+    margin-bottom: 0px;
+}
+
+i {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-right: 5px;
+    margin-bottom: 3px;
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
 .yearContainer {
-    position: relative;
+    width: 180px;
+    position: absolute;
+    display: block;
     height: 200px;
     overflow: auto;
     border: 1px solid black;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: none;
+    margin-top: 0px;
 }
 
 .year {
+    display: block;
     list-style: none;
-    margin: 5px 10px;
+    /* margin: 5px 0px; */
     padding: 5px;
 }
 
@@ -17,7 +51,9 @@
 }
 
 .header {
-    position: static;
+    border: 1px solid black;
+    padding: 15px;
+    width: 150px;
 }
 
 .header:hover {

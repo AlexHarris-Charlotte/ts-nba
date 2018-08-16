@@ -7,7 +7,8 @@ module.exports = {
 
 function teamPromise(team, currentYear) {
     const TeamID = nba.teamIdFromName(team);
-
+    console.log('heeelloo');
+    console.log(team + ' ' + currentYear);
     const stats = nba.stats.teamInfoCommon({
         LeagueID: '00',
         Season: currentYear,

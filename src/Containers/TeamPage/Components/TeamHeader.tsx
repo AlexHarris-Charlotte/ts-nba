@@ -38,7 +38,7 @@ const TeamHeader = (props: IProps) => {
             <h3 className="teamProps">{`${teamCity} ${teamName}`}</h3>
             <h3 className="teamProps">{teamDivision}</h3>
             <h3 className="teamProps">{`Wins: ${w} - Losses: ${l}`}</h3>
-            <YearDropDown className="teamProps" />
+            <YearDropDown className="teamProps" teamName={teamName} />
         </div>
     );
 };

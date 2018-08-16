@@ -1,25 +1,23 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators, Dispatch } from 'redux';
+import { Link } from 'react-router-dom';
 import './YearDropDown.css';
 
-
-
-
-    // This component will take props from both Redux State and parent component
-    // After a user chooses a new year state we will have to send an asynchronous action
-        // To redux to handle the new team Data
-    // We want to monitor the UI state in a state property on the dropdown class
-
+const teamPageActions = require('../../actions/teamPage');
 
 interface IProps {
+    teamName: string;
     state: {
         years: any  
-    }
+    };
+    onLoad: Function;
 }
 
 interface IState {
     dropDownOpen: boolean;
     years: string[]; 
+    currentYear: string;
 }
 
 export class YearDropDown extends React.Component<IProps, IState> {
@@ -38,6 +36,7 @@ export class YearDropDown extends React.Component<IProps, IState> {
         this.state = {
             dropDownOpen: false,
             years: yearArray,
+            currentYear: yearArray[0],
         }
     }
 
@@ -47,6 +46,15 @@ export class YearDropDown extends React.Component<IProps, IState> {
         })
     }
 
+    yearClickHandler(event: any) {
+        const year = event.target.textContent.replace(/ /g, '');
+        const teamId = String(this.props.teamName);
+        this.setState({
+            currentYear: event.target.textContent,
+            dropDownOpen: !this.state.dropDownOpen,
+        })
+        this.props.onLoad(teamId, year);
+    }
 
   render() {
 
@@ -59,12 +67,18 @@ export class YearDropDown extends React.Component<IProps, IState> {
                 className='header'
                 onClick={() => this.dropDownClickHandler()}
               >
-                  header
+              <i className="down"></i>
+                  {this.state.currentYear + ' Season'}
               </div>
               { this.state.dropDownOpen ? 
                 <ul className='yearContainer'>
                     {this.state.years.map( (year: string) => ( 
-                        <li className='year' key={year}> {year} </li> 
+                        <li 
+                            className='year' key={year}
+                            onClick={(e) => this.yearClickHandler(e)}
+                        >                         
+                            {year} 
+                        </li> 
                     )
                     )}
                 </ul> :
@@ -80,8 +94,8 @@ const mapStateToProps = (state: any) => ({
   
 })
 
-const mapDispatchToProps = {
-  
-}
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
+    onLoad: (team, year) => teamPageActions.getTeamData(team, year)
+  }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(YearDropDown)
