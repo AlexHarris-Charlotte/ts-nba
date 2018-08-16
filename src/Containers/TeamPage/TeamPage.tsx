@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux';
-import TeamHeader from './Components/TeamHeader';
+import TeamHeader from './Components/TeamHeader/TeamHeader';
 
 // Need to import actions
 const teamPageActions = require('../../actions/teamPage');

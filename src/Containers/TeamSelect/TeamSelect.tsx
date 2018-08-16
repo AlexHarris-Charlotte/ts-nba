@@ -5,7 +5,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './TeamSelect.css'
 
-import { Team } from './Components/Team'; 
+import { Team } from './Components/TeamName/Team'; 
 
 // Need to import actions
 const teamActions = require('../../actions/teamSelect');
@@ -18,13 +18,13 @@ interface IProps {
 class TeamSelect extends Component<IProps> {
     constructor(props: any) {
         super(props);
-        teams: []
     }
 
     teams: any = []
 
     componentWillMount() {
         this.teams = this.props.onLoad();
+
     }
 
     public render() {

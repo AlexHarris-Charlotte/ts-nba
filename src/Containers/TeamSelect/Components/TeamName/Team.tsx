@@ -2,7 +2,7 @@ import * as React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import './Team.css';
 
-import TeamPage from '../../TeamPage/TeamPage';
+import TeamPage from '../../../TeamPage/TeamPage';
 
 interface IProps {
     teamName: string;
