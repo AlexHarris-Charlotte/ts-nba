@@ -10,9 +10,15 @@ interface IProps {
     match: any;
     onLoad: Function;
     teamData: {
-      availableSeasons: any[],
-      teamInfoCommon: any[],
-      teamSeasonRanks: any[],
+      teamData: {
+        availableSeasons: any[],
+        teamInfoCommon: any[],
+        teamSeasonRanks: any[],
+      }
+      playerData: {
+        playersSeasonTotals: any[],
+        teamOverall: any[]
+      }
     }
 }
 
@@ -44,8 +50,8 @@ export class TeamPage extends React.Component<IProps> {
     return (
       <div>
           <TeamHeader 
-            teamInfo={this.props.teamData.teamInfoCommon[0]} 
-            teamSeasons={this.props.teamData.availableSeasons}  
+            teamInfo={this.props.teamData.teamData.teamInfoCommon[0]} 
+            teamSeasons={this.props.teamData.teamData.availableSeasons}  
           />
       </div>
     )
