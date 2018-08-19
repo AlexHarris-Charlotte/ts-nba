@@ -12,7 +12,6 @@ const initalState: IInitalState = {
 export default function(state = initalState, action: any) {
     switch(action.type) {
         case(GET_TEAM):
-            console.log('things happend??');
             const teamData: any = action.payload 
             return {
                 ...state,

@@ -1,0 +1,9 @@
+.playerTab {
+    border: 1px solid black;
+    padding: 15px;
+}
+
+.playerTab:hover {
+    background-color: rgb(185, 246, 246);
+    cursor: pointer;
+}

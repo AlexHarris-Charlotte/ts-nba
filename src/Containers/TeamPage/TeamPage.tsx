@@ -2,6 +2,8 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux';
 import TeamHeader from './Components/TeamHeader/TeamHeader';
+import PlayerTable from './Components/PlayerTable/PlayerTable';
+import './TeamPage.css';
 
 // Need to import actions
 const teamPageActions = require('../../actions/teamPage');
@@ -48,11 +50,12 @@ export class TeamPage extends React.Component<IProps> {
     }
     console.log(this.props.teamData);
     return (
-      <div>
+      <div className='teamPageContainer'>
           <TeamHeader 
             teamInfo={this.props.teamData.teamData.teamInfoCommon[0]} 
             teamSeasons={this.props.teamData.teamData.availableSeasons}  
           />
+        <PlayerTable playerData={this.props.teamData.playerData}/>
       </div>
     )
   }
