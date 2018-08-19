@@ -12,7 +12,7 @@ interface IProps {
 const PlayerTable = (props: IProps) => {
   const data: any = props.playerData.playersSeasonTotals;
   const players = props.playerData.playersSeasonTotals.map( (player, i) => {
-    return <PlayerTab playerStats={data[i]} key={data.i} />
+    return <PlayerTab playerStats={data[i]} key={data.playerId} />
   }) 
   return (
     <div className='playerTableContainer'>

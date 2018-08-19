@@ -1,14 +1,35 @@
-.playerTab {
-    border: 1px solid black;
-    padding: 15px;
+.statsContainer {
+    margin: 0 auto;
+    max-height: 0px;
+    transition: max-height 1s ease-out;
 }
 
-.playerTab:hover {
-    background-color: rgb(185, 246, 246);
-    cursor: pointer;
+.openStatsContainer {
+    margin: 0 auto;
+    max-height: 4000px;
+    transition: max-height 1s ease-in;
 }
-/* 
-.yearContainer {
+
+.test {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-gap: 10px;
+}
+
+.statsCol {
+    padding: 10px;
+    border: 5px solid rgb(214,129,137);
+    border-radius: 5px;
+    background-color: #3f51b5;
+    color: #fff;
+  }
+
+.statsCol > p {
+    text-align: center;
+}
+
+/* .yearContainer {
     width: 180px;
     position: absolute;
     display: block;

@@ -70,8 +70,7 @@ export class YearDropDown extends React.Component<IProps, IState> {
               <i className="down"></i>
                   {this.state.currentYear + ' Season'}
               </div>
-              { this.state.dropDownOpen ? 
-                <ul className='yearContainer'>
+                <ul className={this.state.dropDownOpen ? 'yearContainerClick' : 'yearContainer'}>
                     {this.state.years.map( (year: string) => ( 
                         <li 
                             className='year' key={year}
@@ -81,9 +80,7 @@ export class YearDropDown extends React.Component<IProps, IState> {
                         </li> 
                     )
                     )}
-                </ul> :
-                null
-                }
+                </ul> 
           </div>
       </div>
     )
