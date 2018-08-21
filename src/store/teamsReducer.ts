@@ -8,7 +8,7 @@ const initalState: IInitalState = {
     teams: []
 }
 
-export default function(state = initalState, action: any) {
+export const getTeams = (state = initalState, action: any) => {
     switch(action.type) {
         case(GET_TEAMS):
             const teamsFetch: string[] = action.payload 

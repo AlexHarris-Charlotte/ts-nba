@@ -67,7 +67,7 @@ export class YearDropDown extends React.Component<IProps, IState> {
                 className='header'
                 onClick={() => this.dropDownClickHandler()}
               >
-              <i className="down"></i>
+              <i className={this.state.dropDownOpen ? 'iOpened' : 'iClosed'}></i>
                   {this.state.currentYear + ' Season'}
               </div>
                 <ul className={this.state.dropDownOpen ? 'yearContainerClick' : 'yearContainer'}>

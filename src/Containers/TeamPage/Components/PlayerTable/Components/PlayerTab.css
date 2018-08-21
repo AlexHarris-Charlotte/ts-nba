@@ -7,6 +7,17 @@
     background-color: rgb(185, 246, 246);
     cursor: pointer;
 }
+
+.testClose {
+    max-height: 0;
+    transition: max-height 0.15s ease-out;
+}
+
+.testOpen {
+    max-height: 4000px;
+    transition: max-height 0.25s ease-in;
+}
+
 /* 
 .yearContainer {
     width: 180px;

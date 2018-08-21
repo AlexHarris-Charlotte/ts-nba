@@ -27,7 +27,10 @@ export default class PlayerTab extends React.Component<IProps> {
         <div className='playerTab'
             onClick={() => this.playerDropDownHandler()}
         >
-            {this.props.playerStats.playerName}
+            <div>
+                {this.props.playerStats.playerName}
+            </div>
+            <div>
             <PlayerStats 
                 ast={ast}
                 pts={pts}
@@ -40,7 +43,7 @@ export default class PlayerTab extends React.Component<IProps> {
                 plusMinus={plusMinus}
                 dropDown={this.state.dropDownOpen}
             />
-        
+            </div>
 
         </div>
 
