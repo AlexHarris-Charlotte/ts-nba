@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux';
 import TeamHeader from './Components/TeamHeader/TeamHeader';
 import PlayerTable from './Components/PlayerTable/PlayerTable';
+import SeasonStats from './Components/SeasonStats/SeasonStats';
+
 import './TeamPage.css';
 
 // Need to import actions
@@ -49,6 +51,7 @@ export class TeamPage extends React.Component<IProps> {
       return <div>Make Loader here</div>
     }
     console.log(this.props.teamData);
+    const teamStats = this.props.teamData.teamData.teamSeasonRanks[0];
     return (
       <div className='teamPageContainer'>
           <TeamHeader 
@@ -56,6 +59,16 @@ export class TeamPage extends React.Component<IProps> {
             teamSeasons={this.props.teamData.teamData.availableSeasons}  
           />
         <PlayerTable playerData={this.props.teamData.playerData}/>
+        <SeasonStats 
+          ptsRank={teamStats.ptsRank}
+          ptsPg={teamStats.ptsPg}
+          rebRank={teamStats.rebRank}
+          rebPg={teamStats.rebPg}
+          astRank={teamStats.astRank}
+          astPg={teamStats.astPg}
+          oppPtsRank={teamStats.oppPtsRank}
+          oppPtsPg={teamStats.oppPtsPg}
+        />
       </div>
     )
   }

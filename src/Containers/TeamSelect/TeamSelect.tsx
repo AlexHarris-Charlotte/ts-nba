@@ -55,7 +55,7 @@ class TeamSelect extends Component<IProps> {
 
 
 const mapStateToProps = (state: any) => {
-    return { teamsList: state.teamsReducer.teams }
+    return { teamsList: state.getTeams.teams }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({

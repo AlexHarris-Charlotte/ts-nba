@@ -1,0 +1,9 @@
+.teamStatsContainer {
+  position: fixed;
+  background-color: white;
+  z-index: 10000; }
+
+.grid {
+  display: grid;
+  grid-template-areas: "header header" "main sidebar" "footer footer";
+  grid-gap: 1em; }
