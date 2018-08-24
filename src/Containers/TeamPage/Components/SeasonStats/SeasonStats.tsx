@@ -14,23 +14,25 @@ interface IProps {
 
 const SeasonStats = (props: IProps) => {
     return (
-        <div className='teamStatsContainer'>
+        <div className="seasonStatsContainer">
             <h4>Team Stats</h4>
-            <div>
-                Points Per Game
-                {props.ptsPg}
-            </div>
-            <div>
-                Rebounds Per Game
-                {props.rebPg}
-            </div>
-            <div>
-                Assists Per Game
-                {props.astPg}
-            </div>
-            <div>
-                Points Allowed
-                {props.oppPtsPg}
+            <div className='seasonStatsGrid'>
+                <div className="seasonPoints">
+                    Points Per Game
+                    {props.ptsPg}
+                </div>
+                <div className="seasonRebounds">
+                    Rebounds Per Game
+                    {props.rebPg}
+                </div>
+                <div className="seasonAssists">
+                    Assists Per Game
+                    {props.astPg}
+                </div>
+                <div className="seasonOppPts">
+                    Points Allowed
+                    {props.oppPtsPg}
+                </div>
             </div>
         </div>
     );
