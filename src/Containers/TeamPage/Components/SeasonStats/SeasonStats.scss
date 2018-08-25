@@ -1,8 +1,18 @@
 .seasonStatsContainer {
   width: 400px;
-  position: fixed;
-  top: 20%;
-  right: 5%;
+
+  .absolute {
+    position: absolute;
+    top: 30%;
+    right: 5%;
+  }
+
+  .fixed {
+    position: fixed;
+    top: 0%;
+    right: 5%;
+  }
+
 }
 
 .seasonStatsGrid {
@@ -11,7 +21,7 @@
     grid-template-areas: "upper-left upper-right" "bottom-left bottom-right";
     grid-gap: 1px;
     background-color: white;
-    z-index: 10000;
+    z-index: 0;
     div {
       background-color: white;
       padding: 10px;

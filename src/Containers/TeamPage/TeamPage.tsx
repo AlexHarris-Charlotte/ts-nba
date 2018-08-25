@@ -6,6 +6,7 @@ import PlayerTable from './Components/PlayerTable/PlayerTable';
 import SeasonStats from './Components/SeasonStats/SeasonStats';
 
 import './TeamPage.css';
+import { runInThisContext } from 'vm';
 
 // Need to import actions
 const teamPageActions = require('../../actions/teamPage');
@@ -27,14 +28,20 @@ interface IProps {
 }
 
 export class TeamPage extends React.Component<IProps> {
+
+  private stats: React.RefObject<HTMLElement>;
+
   constructor(props: any) {
     super(props);
+    this.stats = React.createRef();
   }
 
   state = {
     teamInfo    : null,
     seasonRank  : null,
+    scrollPos   : false,
   }
+
 
   componentDidMount() {
     let param: string = this.props.match.params.teamName
@@ -44,13 +51,38 @@ export class TeamPage extends React.Component<IProps> {
     currentSeason = String(currentSeason + '-' + (Number(currentSeason.slice(2)) + 1));
 
     this.props.onLoad(param, currentSeason);
+    window.addEventListener('scroll', this.scrollHandler);
   }
+
+//   ref = (node: any) => {
+//     this.ref = node;
+//     window.addEventListener('scroll', this.onScroll);
+// }
+
+componentWillUnmount() {
+    window.removeEventListener('scroll', this.scrollHandler);
+}
+
+scrollHandler = (event: any) => {
+  let scrollPosition = window.scrollY;
+  if (scrollPosition >= 260) {
+    this.setState({
+      ...this.state,
+      scrollPos: true
+    });
+  } else {
+    this.setState({
+      ...this.state,
+      scrollPos: false
+    });
+  }
+}
+
 
   render() {
     if (!this.props.teamData) {
       return <div>Make Loader here</div>
     }
-    console.log(this.props.teamData);
     const teamStats = this.props.teamData.teamData.teamSeasonRanks[0];
     return (
       <div className='teamPageContainer'>
@@ -60,6 +92,8 @@ export class TeamPage extends React.Component<IProps> {
           />
         <PlayerTable playerData={this.props.teamData.playerData}/>
         <SeasonStats 
+          ref={this.stats}
+          scrollState={this.state.scrollPos}
           ptsRank={teamStats.ptsRank}
           ptsPg={teamStats.ptsPg}
           rebRank={teamStats.rebRank}
