@@ -20,7 +20,7 @@ function getDivisions() {
   const teamDivisions = {
       Atlantic: [
         'Boston Celtics', 
-        'New Jersey Nets',
+        'Brooklyn Nets',
         'New York Knicks', 
         'Philadelphia 76ers',  
         'Toronto Raptors'

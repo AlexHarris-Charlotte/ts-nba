@@ -2,7 +2,8 @@
 const nba = require('nba');
 
 module.exports = {
-    getTeamData
+    getTeamData,
+    getDivisionTeamData
 }
 
 
@@ -32,6 +33,22 @@ function getTeamData(team, currentYear) {
         return teamPromise(team, currentYear).then(data => {
             dispatch({type: 'GET_TEAM', payload: data})
         });
+    }
+}
+
+
+// Map the teamArray and return a promise for each team
+// Promise.all(team Promises) and store to a variable
+// Maybe we just return the promise.all() and then return the dispatch within the then statement
+
+function getDivisionTeamData(teamArray, currentYear) {
+    const test = teamArray.map( team => {
+        return teamPromise(team, currentYear)
+    })
+    return function(dispatch, getState) {
+        Promise.all( test ).then(data => { 
+            return dispatch ({ type: 'DIVISION_DATA', payload: data})
+        }).catch(e => console.log(e))
     }
 }
 
