@@ -1,0 +1,31 @@
+.barchartContainer {
+  position: absolute;
+  top: 55%;
+  right: 5%; }
+  .barchartContainer .fixed {
+    position: fixed;
+    top: 20%;
+    right: 5%; }
+  .barchartContainer .buttonContainer {
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-content: center; }
+    .barchartContainer .buttonContainer button {
+      padding: 10px;
+      background-color: #303030;
+      color: white;
+      border: 2px solid black;
+      box-sizing: border-box;
+      text-transform: uppercase;
+      background-position: center;
+      transition: background 0.8s; }
+    .barchartContainer .buttonContainer button:hover {
+      cursor: pointer;
+      background: #7e7e7e radial-gradient(circle, transparent 1%, #c0995a 1%) center/15000%; }
+    .barchartContainer .buttonContainer button:active {
+      background-color: #f7b76e;
+      background-size: 100%;
+      transition: background 0s; }
+
+/* Button style */

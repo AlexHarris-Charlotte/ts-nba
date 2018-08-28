@@ -17,7 +17,7 @@ interface IProps {
 const SeasonStats = (props: IProps)  => {
     return (
         <div className="seasonStatsContainer">
-            <div className={props.scrollState ? "fixed" : "absolute"}>
+            <div className={props.scrollState ? "absolute fixed" : "absolute"}>
                 <h4>Team Stats</h4>
                 <div className='seasonStatsGrid'>
                     <div className="seasonPoints">

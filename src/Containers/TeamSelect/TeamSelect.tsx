@@ -12,7 +12,8 @@ const teamActions = require('../../actions/teamSelect');
 
 interface IProps {
     teamsList: string[];
-    onLoad: Function;
+    getTeams: Function;
+    getDivisions: Function;
 }
 
 class TeamSelect extends Component<IProps> {
@@ -20,16 +21,14 @@ class TeamSelect extends Component<IProps> {
         super(props);
     }
 
-    teams: any = []
-
     componentWillMount() {
-        this.teams = this.props.onLoad();
-
+        this.props.getTeams();
+        this.props.getDivisions();
     }
 
     public render() {
-
-        const teamList = this.teams.payload.map( (team: any, index: number) => {
+        console.log(this.props);
+        const teamList = this.props.teamsList.map( (team: any, index: number) => {
             return (
                 <Team 
                     teamName={team.teamName}
@@ -55,11 +54,15 @@ class TeamSelect extends Component<IProps> {
 
 
 const mapStateToProps = (state: any) => {
-    return { teamsList: state.getTeams.teams }
+    return { 
+        teamsList: state.getTeams.teams,
+        teamDivision: state.getTeams.divisions
+    }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
-    onLoad: () => teamActions.getTeams()
+    getTeams: () => teamActions.getTeams(),
+    getDivisions: () => teamActions.getDivisions()
 }, dispatch);
 
 
