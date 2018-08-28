@@ -8,33 +8,59 @@ interface IProps {
 }
 
 
-const BarChart = (props: IProps) => {
-
-  const teamsArray: any[] = [];
-  for (let team in props.teamData) {
-      teamsArray.push(props.teamData[team]);
+class BarChart extends React.Component<IProps> {
+  constructor(props: IProps) {
+    super(props);
   }
 
-  const pointsPerGame = teamsArray.map( team => team.teamData.teamSeasonRanks[0].ptsPg);
+  state = {
+    activeStat: 'Points Per Game'
+  }
 
-  const teams = teamsArray.map((t) => {
-    return t.teamData.teamInfoCommon[0].teamCity + ' ' + t.teamData.teamInfoCommon[0].teamName; 
-  });
 
-  const pointsPerGameAndTeam = pointsPerGame.map( (points, i) => {
-    const teamName = teams[i];
-    return { points, teamName}
-   });
+  statOptionHandler(e: React.MouseEvent<HTMLButtonElement>) {
+    let target = e.target;
+    if (target instanceof HTMLButtonElement) {
+      this.setState({
+        activeStat: target.textContent
+      }, () => {
+        // pass activeState to function
+        // This function is a closure and has a switch case
+        // switch case will determine what manips based on state
+        // pass maniped data to function that builds entire chart
+        // make sure this chart function is all dynamic.
+      });
+    }
+  }
       
-      var margin = {top: 5, right: 5, bottom: 50, left: 50};
+      
+  render() {
+
+    const teamsArray: any[] = [];
+    for (let team in this.props.teamData) {
+        teamsArray.push(this.props.teamData[team]);
+    }
+
+    const pointsPerGame = teamsArray.map( team => team.teamData.teamSeasonRanks[0].ptsPg);
+
+    const teams = teamsArray.map((t) => {
+      return t.teamData.teamInfoCommon[0].teamCity + ' ' + t.teamData.teamInfoCommon[0].teamName; 
+    });
+
+    const pointsPerGameAndTeam = pointsPerGame.map( (points, i) => {
+      const teamName = teams[i];
+      return { points, teamName}
+    });
+
+    const margin = {top: 5, right: 5, bottom: 50, left: 50};
       // here, we want the full chart to be 700x200, so we determine
       // the width and height by subtracting the margins from those values
-      var fullWidth = 500;
-      var fullHeight = 300;
+      const fullWidth = 500;
+      const fullHeight = 300;
       // the width and height values will be used in the ranges of our scales
-      var width = fullWidth - margin.right - margin.left;
-      var height = fullHeight - margin.top - margin.bottom;
-      var svg = d3.select('svg')
+      const width = fullWidth - margin.right - margin.left;
+      const height = fullHeight - margin.top - margin.bottom;
+      const svg = d3.select('svg')
         .attr('width', fullWidth)
         .attr('height', fullHeight)
         // this g is where the bar chart will be drawn
@@ -42,7 +68,7 @@ const BarChart = (props: IProps) => {
           // translate it to leave room for the left and top margins
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
       
-      var teamScale = d3.scaleBand()
+      const teamScale = d3.scaleBand()
         .domain(teams)
         .range([0, width])
         .paddingInner(0.1);
@@ -68,13 +94,15 @@ const BarChart = (props: IProps) => {
         .call(yAxis);
       
       // add a label to the yAxis
+
+      // Text is not removed when a different field is clicked upon
       var yText = yAxisEle.append('text')
         .attr('transform', 'rotate(-90)translate(-' + height/2 + ',0)')
         .style('text-anchor', 'middle')
         .style('fill', 'black')
         .attr('dy', '-2.5em')
         .style('font-size', 14)
-        .text('Points Per Game');
+        .text(this.state.activeStat);
       
       var barHolder = svg.append('g')
         .classed('bar-holder', true);
@@ -94,23 +122,32 @@ const BarChart = (props: IProps) => {
           .attr('height', function(team: any, i: number) {
             return height - statScale(team.points);
           });
-      
-      
-      
+
 
     return  (
       <div className='barchartContainer'>
-        <div className={props.scrollState ? 'fixed' : ''}>
+        <div className={this.props.scrollState ? 'fixed' : ''}>
           <svg/>
           <div className='buttonContainer'>
-            <button>Points Per Game</button>
-            <button>Assists Per Game</button>
-            <button>Rebounds Per Game</button>
-            <button>Points Allowed</button>
+            <button onClick={(e) => this.statOptionHandler(e)}>
+              Points Per Game
+            </button>
+            <button onClick={(e) => this.statOptionHandler(e)}>
+              Assists Per Game
+            </button>
+            <button onClick={(e) => this.statOptionHandler(e)}>
+              Rebounds Per Game
+            </button>
+            <button onClick={(e) => this.statOptionHandler(e)}>
+              Points Allowed
+            </button>
         </div>
         </div>
       </div>
     );
+  }      
+
+
 }
 
 
